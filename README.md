@@ -1,1 +1,1 @@
-- Tetris-style game \*
+# Tetris-style game
