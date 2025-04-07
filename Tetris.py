@@ -1,12 +1,18 @@
 import pygame
+from matrix import Matrix
+import tetrimino
 
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+screen = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
 running = True
 dt = 0
 
-player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
+matrix = Matrix(screen, 8, 20, 15)
+
+matrix.summon_tetrimino(tetrimino.LShape())
+
+count = 0
 
 while running:
     for event in pygame.event.get():
@@ -15,6 +21,15 @@ while running:
 
     screen.fill("black")
 
+    matrix.render()
+
     pygame.display.flip()
 
     dt = clock.tick(60) / 1000
+
+    count += dt
+
+    if count >= 0.75:
+
+        count = 0
+    
